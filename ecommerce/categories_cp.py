@@ -1,5 +1,12 @@
 from .models import Category, Product
+from datetime import datetime
 
+def my_cp(request):
+    ctx={
+        'actual_date': datetime.now(),
+        'version': '1.0'
+    }
+    return ctx
 def cat_list(request):
 
     selected_slug = request.GET.get('category')
@@ -17,5 +24,7 @@ def cat_list(request):
         'selected': category_to_show,
         'products': products,
         'all_categories': categories,
+        'actual_date': datetime.now(),
+        'version': '1.0'
     }
     return ctx

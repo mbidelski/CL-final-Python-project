@@ -14,13 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
+
+from CL_final_project import settings
 from ecommerce.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
-    url(r'^', HomeView.as_view(), name="home"),
+
+    #front page
+    url(r'^$', HomeView.as_view(), name="home"),
 
     # category list, add, mod and del
     url(r'^categories', CategoriesView.as_view(),
@@ -46,4 +51,4 @@ urlpatterns = [
     url(r'^product_del/(?P<pk>(\d)+)/(?P<slug>[A-Za-z\-]+)', ProductDel.as_view(),
         name="product_del"),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

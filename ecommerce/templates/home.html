@@ -25,7 +25,7 @@
 
                 {% for p in products %}
                 <div class="card" style="width: 100%;">
-                  <img class="card-img-top" src="" alt="image_placeholder">
+                  <img class="card-img-top landscape" src="{{ MEDIA_URL }}{{ p.image }}" alt="image_placeholder">
                   <div class="card-body">
                     <h4 class="card-title">{{ p.name }}</h4>
                     <p class="card-text">{{ p.description|default:"Opis" }}</p>

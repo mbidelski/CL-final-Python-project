@@ -25,6 +25,10 @@ SECRET_KEY = '_qb_*l(5jhqcn6-sfmp0=4&&4f***b#v#xa14gc^o3bk262fes'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# print(BASE_DIR)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+MEDIA_URL = '/images/'
+
 ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = 'categories'
@@ -66,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'ecommerce.categories_cp.cat_list',
+                'django.template.context_processors.media',
             ],
         },
     },

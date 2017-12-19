@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django import forms
+
+from CL_final_project.settings import MEDIA_ROOT, MEDIA_URL
 from .models import Category, Product
 from .forms import *
 from django.http import HttpResponse
@@ -124,7 +126,7 @@ class ProductUpdate(UpdateView):
     template_name_suffix = '_update'
 
     def get_success_url(self):
-        return reverse_lazy('category', args=[self.kwargs['slug']])
+        return reverse_lazy('product_mod', args=[self.kwargs['pk'],self.kwargs['slug']])
 
 class ProductDel(DeleteView):
     model = Product

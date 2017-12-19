@@ -29,8 +29,8 @@ class Product(models.Model):
     price = models.FloatField(null=True, blank=True)
     vat_rate = models.IntegerField(choices=VAT, blank=True)
     stock = models.IntegerField(null=True, blank=True)
-    categories = models.ManyToManyField(Category, null=True, blank=True)
-    image = models.FileField(upload_to='images/', null=True, blank=True)
+    categories = models.ManyToManyField(Category)
+    image = models.FileField(upload_to='.', null=True, blank=True)
 
     def __str__(self):
         return self.name
