@@ -1,0 +1,18 @@
+        {% extends "home.html" %}
+
+        {% block rcol %}
+       <h2>{{ product }}
+           <span style="float: right">
+                <button class="btn btn-secondary" onclick="goBack()">Powrót</button>
+           </span>
+       </h2>
+       <h3> {{categories }}</h3>
+       <ul>
+           <li>Opis: {{ product.description|default:"brak" }}</li>
+           <li>Cena: {{ product.price|default:"n/d" }} PLN</li>
+           <li>Stawka VAT: {{ product.get_vat_rate_display|default:"n/d " }}%</li>
+           <li>Liczba dostępnych sztuk: {{ product.stock|default:"n/d" }}</li>
+       </ul>
+
+       {% endblock %}
+

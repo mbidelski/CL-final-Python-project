@@ -1,0 +1,29 @@
+        {% extends "store.html" %}
+
+        {% block content %}
+        <h2>
+           Produkty z kategorii: {{ category }}
+            <span style="float: right">
+                <a href="{% url 'product_add' category.slug|default:'all' %}" class="btn                    btn-success">Dodaj</a>
+                <a href="{% url 'categories' %}" class="btn btn-secondary">Powrót</a>
+            </span>
+
+        </h2>
+        <table width="100%">
+           {% for p in products %}
+
+           <tr class="list-group-item list-group-item-action click-row" data-href="{% url 'product_mod' p.pk category.slug|default:'all' %}">
+               <td width="100%">
+                   <a href="{% url 'product_mod' p.pk category.slug|default:'all' %}"> {{ p }}</a>
+                </td>
+               <td align="right" style="white-space: nowrap">
+                   <a href="{% url 'product_mod' p.pk category.slug|default:'all' %}"><button type="button" class="btn btn-primary">edytuj</button></a>
+                   <a href="{% url 'product_del' p.pk category.slug|default:'all' %}"><button type="button" class="btn btn-danger">usuń</button></a>
+               </td>
+
+           </tr>
+
+           {% endfor %}
+       </table>
+       {% endblock %}
+

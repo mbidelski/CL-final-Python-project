@@ -1,0 +1,12 @@
+        {% extends "store.html" %}
+
+        {% block content %}
+       <h2>Czy na pewno chcesz usunąć kategorię {{object}}?</h2>
+    <form	action=""	method="post" class="form-group">
+		{%	csrf_token	%}
+		{{	form.as_p	}}
+        <button	type="submit" value="del" class="btn btn-danger">Usuń</button>
+        <a href="{% url 'categories' %}"> <button type="button" data-method="get" class="btn btn-secondary">Powrót</button></a>
+    </form>
+        {% endblock %}
+

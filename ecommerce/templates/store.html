@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cielesne rozkosze</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+        ul{
+            list-style-type: none;
+        }
+
+    </style>
+    {% load static %}
+</head>
+<body style="width:40%; margin:auto;">
+        <div class="jumbotron" style="background-image: url({% static "starburst-jazz1.jpg" %}); background-position: center 30%;">
+
+            <a href="{% url 'home' %}"> <h1 class="display-3" align="middle">Cielesne
+            rozkosze</h1></a>
+        <h1 class="lead" align="middle"><font color="#f0ffff">Nie przeglądaj nas w pracy...</font></h1>
+        </div>
+
+
+{% block content %}
+
+       <h2>
+           Kategorie produktów
+           <span style="float: right">
+                <a href="{% url 'category_add' %}""> <button type="button" class="btn
+                btn-success">Dodaj</button></a>
+            </span>
+       </h2>
+
+        <table width="100%" style="cursor: pointer">
+
+           <tr class="list-group-item list-group-item-action click-row" data-href='category/all'>
+               <td><a href="category/all"><strong>Pokaż wszystkie</strong></a> </td>
+           </tr>
+
+           {% for cat in all_categories %}
+
+           <tr class="list-group-item list-group-item-action click-row" data-href="{% url 'category' cat.slug %}">
+               <td width="100%">
+                    <a href="{% url 'category' cat.slug %}">{{ cat }}</a>
+               </td>
+
+               <td align="right" style="white-space: nowrap">
+                   <!--<span style="float: right">-->
+                       <a href="{% url 'category_modify' cat.slug %}" class="btn                            btn-primary">edytuj</a>
+                       <a href="{% url 'category_del' cat.slug %}" class="btn                         btn-danger">usuń</a>
+                   <!--</span>-->
+               </td>
+
+           </tr>
+
+           {% endfor %}
+       </table>
+
+{% endblock %}
+       <hr>
+        <p>Dzisiaj jest: {{ actual_date }} | wersja: {{ version }}</p>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        $(document).ready(function($) {
+            $(".click-row").click(function () {
+            window.location = $(this).data('href');
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

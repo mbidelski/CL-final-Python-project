@@ -1,0 +1,44 @@
+        {% extends "store.html" %}
+
+        {% block content %}
+
+        <div class="container">
+          <div class="row">
+            <div class="col-4">
+                <div class="list-group">
+
+                  <a href="{% url 'home' %}?category=" class="list-group-item list-group-item-action {% if selected == None %}active{% endif %}">
+                    Wszystkie
+                  </a>
+
+              {% for c in all_categories %}
+                  <a href="{% url 'home' %}?category={{c.slug}}" class="list-group-item list-group-item-action {% if c == selected %}active{% endif %}">
+                    {{ c.category_name }}
+                  </a>
+              {% endfor %}
+
+                </div>
+                <a href="{% url 'categories' %}">Panel sterowania</a>
+            </div>
+            <div class="col-8">
+            {% block rcol %}
+
+                {% for p in products %}
+                <div class="card" style="width: 100%;">
+                  <img class="card-img-top" src="" alt="image_placeholder">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ p.name }}</h4>
+                    <p class="card-text">{{ p.description|default:"Opis" }}</p>
+                    <a href="{% url 'product' p.pk %}?category={{selected.slug}}" class="btn btn-primary">Zobacz</a>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endblock %}
+
+
+          </div>
+        </div>
+
+       {% endblock %}
+

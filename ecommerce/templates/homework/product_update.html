@@ -1,0 +1,23 @@
+        {% extends "store.html" %}
+
+        {% block content %}
+    <form	action=""	method="post" class="form-control">
+    <h2>Zmodyfikuj produkt
+    <span style="float: right;">
+        <button	type="submit" value="mod" class="btn btn-success">Aktualizuj</button>
+        <button type="button" class="btn btn-secondary" onclick="goBack()">Powrót</button>
+    </span>
+    </h2>
+		{%	csrf_token	%}
+    <table width="100%" class="table table-hover">
+        {%	for f in form	%}
+        <tr width="100%">
+            <td> {{	f.label	}}: </td><td> {{	f	}}</td>
+        </tr>
+        {%	endfor	%}
+    </table>
+
+    </form>
+       {% endblock %}
+
+

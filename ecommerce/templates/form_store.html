@@ -1,0 +1,12 @@
+
+ {% block content %}
+    <form method="post" class="form-group">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button	type="submit" value="mod" class="btn btn-success">Wyślij</button>
+         <button type="button" class="btn btn-secondary" onclick="goBack()">Powrót</button>
+
+    </form>
+
+ {% endblock %}
+
